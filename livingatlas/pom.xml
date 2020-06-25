@@ -11,7 +11,7 @@
     <relativePath>../pom.xml</relativePath>
   </parent>
 
-  <artifactId>ala</artifactId>
+  <artifactId>livingatlas</artifactId>
   <packaging>pom</packaging>
 
   <name>Pipelines :: ALA</name>
