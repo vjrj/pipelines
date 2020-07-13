@@ -1,7 +1,7 @@
 package org.gbif.pipelines.factory;
 
-import org.gbif.pipelines.parsers.config.model.PipelinesConfig;
-import org.gbif.pipelines.parsers.ws.client.metadata.MetadataServiceClient;
+import org.gbif.pipelines.core.parsers.config.model.PipelinesConfig;
+import org.gbif.pipelines.core.parsers.ws.client.metadata.MetadataServiceClient;
 import org.gbif.pipelines.transforms.SerializableSupplier;
 
 import lombok.SneakyThrows;

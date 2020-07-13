@@ -32,9 +32,9 @@ import lombok.extern.slf4j.Slf4j;
 
 import static org.gbif.common.parsers.core.ParseResult.CONFIDENCE.DEFINITE;
 import static org.gbif.common.parsers.core.ParseResult.CONFIDENCE.PROBABLE;
-import static org.gbif.pipelines.parsers.utils.ModelUtils.addIssueSet;
-import static org.gbif.pipelines.parsers.utils.ModelUtils.extractValue;
-import static org.gbif.pipelines.parsers.utils.ModelUtils.hasValue;
+import static org.gbif.pipelines.core.parsers.utils.ModelUtils.addIssueSet;
+import static org.gbif.pipelines.core.parsers.utils.ModelUtils.extractValue;
+import static org.gbif.pipelines.core.parsers.utils.ModelUtils.hasValue;
 
 /** Interprets date representations into a Date to support API v1 */
 @Slf4j

@@ -13,7 +13,7 @@ import org.gbif.dwc.terms.DwcTerm;
 import org.gbif.pipelines.io.avro.EventDate;
 import org.gbif.pipelines.io.avro.ExtendedRecord;
 import org.gbif.pipelines.io.avro.TemporalRecord;
-import org.gbif.pipelines.parsers.parsers.temporal.ParsedTemporal;
+import org.gbif.pipelines.core.parsers.parsers.temporal.ParsedTemporal;
 
 import org.apache.beam.sdk.testing.NeedsRunner;
 import org.apache.beam.sdk.testing.PAssert;

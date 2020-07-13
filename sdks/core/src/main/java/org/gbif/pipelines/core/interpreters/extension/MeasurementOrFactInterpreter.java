@@ -18,16 +18,16 @@ import org.gbif.pipelines.io.avro.DeterminedDate;
 import org.gbif.pipelines.io.avro.ExtendedRecord;
 import org.gbif.pipelines.io.avro.MeasurementOrFact;
 import org.gbif.pipelines.io.avro.MeasurementOrFactRecord;
-import org.gbif.pipelines.parsers.parsers.SimpleTypeParser;
-import org.gbif.pipelines.parsers.parsers.temporal.ParsedTemporal;
-import org.gbif.pipelines.parsers.parsers.temporal.ParsedTemporalIssue;
-import org.gbif.pipelines.parsers.parsers.temporal.TemporalParser;
+import org.gbif.pipelines.core.parsers.parsers.SimpleTypeParser;
+import org.gbif.pipelines.core.parsers.parsers.temporal.ParsedTemporal;
+import org.gbif.pipelines.core.parsers.parsers.temporal.ParsedTemporalIssue;
+import org.gbif.pipelines.core.parsers.parsers.temporal.TemporalParser;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
-import static org.gbif.pipelines.parsers.parsers.temporal.ParsedTemporalIssue.DATE_INVALID;
-import static org.gbif.pipelines.parsers.parsers.temporal.ParsedTemporalIssue.DATE_UNLIKELY;
+import static org.gbif.pipelines.core.parsers.parsers.temporal.ParsedTemporalIssue.DATE_INVALID;
+import static org.gbif.pipelines.core.parsers.parsers.temporal.ParsedTemporalIssue.DATE_UNLIKELY;
 
 /**
  * Interpreter for the MeasurementsOrFacts extension, Interprets form {@link ExtendedRecord} to {@link

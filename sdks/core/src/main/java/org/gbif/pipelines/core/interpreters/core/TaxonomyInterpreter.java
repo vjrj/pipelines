@@ -24,8 +24,8 @@ import org.gbif.pipelines.io.avro.Rank;
 import org.gbif.pipelines.io.avro.RankedName;
 import org.gbif.pipelines.io.avro.State;
 import org.gbif.pipelines.io.avro.TaxonRecord;
-import org.gbif.pipelines.parsers.parsers.taxonomy.TaxonRecordConverter;
-import org.gbif.pipelines.parsers.utils.ModelUtils;
+import org.gbif.pipelines.core.parsers.parsers.taxonomy.TaxonRecordConverter;
+import org.gbif.pipelines.core.parsers.utils.ModelUtils;
 import org.gbif.rest.client.species.NameUsageMatch;
 
 import org.elasticsearch.common.Strings;
@@ -38,8 +38,8 @@ import lombok.extern.slf4j.Slf4j;
 import static org.gbif.api.vocabulary.OccurrenceIssue.TAXON_MATCH_FUZZY;
 import static org.gbif.api.vocabulary.OccurrenceIssue.TAXON_MATCH_HIGHERRANK;
 import static org.gbif.api.vocabulary.OccurrenceIssue.TAXON_MATCH_NONE;
-import static org.gbif.pipelines.parsers.utils.ModelUtils.addIssue;
-import static org.gbif.pipelines.parsers.utils.ModelUtils.extractValue;
+import static org.gbif.pipelines.core.parsers.utils.ModelUtils.addIssue;
+import static org.gbif.pipelines.core.parsers.utils.ModelUtils.extractValue;
 
 /**
  * Interpreter for taxonomic fields present in an {@link ExtendedRecord} avro file. These fields

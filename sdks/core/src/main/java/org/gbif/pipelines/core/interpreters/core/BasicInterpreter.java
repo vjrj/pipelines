@@ -28,9 +28,9 @@ import org.gbif.pipelines.io.avro.ExtendedRecord;
 import org.gbif.pipelines.keygen.HBaseLockingKeyService;
 import org.gbif.pipelines.keygen.api.KeyLookupResult;
 import org.gbif.pipelines.keygen.identifier.OccurrenceKeyBuilder;
-import org.gbif.pipelines.parsers.parsers.SimpleTypeParser;
-import org.gbif.pipelines.parsers.parsers.VocabularyParser;
-import org.gbif.pipelines.parsers.parsers.identifier.AgentIdentifierParser;
+import org.gbif.pipelines.core.parsers.parsers.SimpleTypeParser;
+import org.gbif.pipelines.core.parsers.parsers.VocabularyParser;
+import org.gbif.pipelines.core.parsers.parsers.identifier.AgentIdentifierParser;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -43,9 +43,9 @@ import static org.gbif.api.vocabulary.OccurrenceIssue.BASIS_OF_RECORD_INVALID;
 import static org.gbif.api.vocabulary.OccurrenceIssue.INDIVIDUAL_COUNT_INVALID;
 import static org.gbif.api.vocabulary.OccurrenceIssue.REFERENCES_URI_INVALID;
 import static org.gbif.api.vocabulary.OccurrenceIssue.TYPE_STATUS_INVALID;
-import static org.gbif.pipelines.parsers.utils.ModelUtils.addIssue;
-import static org.gbif.pipelines.parsers.utils.ModelUtils.extractOptValue;
-import static org.gbif.pipelines.parsers.utils.ModelUtils.extractValue;
+import static org.gbif.pipelines.core.parsers.utils.ModelUtils.addIssue;
+import static org.gbif.pipelines.core.parsers.utils.ModelUtils.extractOptValue;
+import static org.gbif.pipelines.core.parsers.utils.ModelUtils.extractValue;
 
 /**
  * Interpreting function that receives a ExtendedRecord instance and applies an interpretation to

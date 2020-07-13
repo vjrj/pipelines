@@ -19,7 +19,6 @@
 
   <modules>
     <module>models</module>
-    <module>parsers</module>
     <module>core</module>
     <module>keygen</module>
   </modules>

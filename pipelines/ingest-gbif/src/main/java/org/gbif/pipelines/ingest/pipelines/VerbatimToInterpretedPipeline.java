@@ -17,7 +17,7 @@ import org.gbif.pipelines.ingest.utils.MetricsHandler;
 import org.gbif.pipelines.io.avro.BasicRecord;
 import org.gbif.pipelines.io.avro.ExtendedRecord;
 import org.gbif.pipelines.io.avro.MetadataRecord;
-import org.gbif.pipelines.parsers.config.model.PipelinesConfig;
+import org.gbif.pipelines.core.parsers.config.model.PipelinesConfig;
 import org.gbif.pipelines.transforms.common.FilterExtendedRecordTransform;
 import org.gbif.pipelines.transforms.common.UniqueGbifIdTransform;
 import org.gbif.pipelines.transforms.common.UniqueIdTransform;

@@ -9,7 +9,7 @@ import org.gbif.pipelines.core.Interpretation;
 import org.gbif.pipelines.core.interpreters.extension.MultimediaInterpreter;
 import org.gbif.pipelines.io.avro.ExtendedRecord;
 import org.gbif.pipelines.io.avro.MultimediaRecord;
-import org.gbif.pipelines.parsers.utils.ModelUtils;
+import org.gbif.pipelines.core.parsers.utils.ModelUtils;
 import org.gbif.pipelines.transforms.SerializableConsumer;
 import org.gbif.pipelines.transforms.Transform;
 

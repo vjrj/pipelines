@@ -25,8 +25,8 @@ import org.gbif.pipelines.io.avro.Audubon;
 import org.gbif.pipelines.io.avro.AudubonRecord;
 import org.gbif.pipelines.io.avro.ExtendedRecord;
 import org.gbif.pipelines.io.avro.MediaType;
-import org.gbif.pipelines.parsers.parsers.temporal.ParsedTemporal;
-import org.gbif.pipelines.parsers.parsers.temporal.TemporalParser;
+import org.gbif.pipelines.core.parsers.parsers.temporal.ParsedTemporal;
+import org.gbif.pipelines.core.parsers.parsers.temporal.TemporalParser;
 
 import com.google.common.base.Strings;
 import lombok.AccessLevel;

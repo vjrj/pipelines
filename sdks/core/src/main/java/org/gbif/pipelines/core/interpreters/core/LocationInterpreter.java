@@ -23,12 +23,12 @@ import org.gbif.kvs.geocode.LatLng;
 import org.gbif.pipelines.io.avro.ExtendedRecord;
 import org.gbif.pipelines.io.avro.LocationRecord;
 import org.gbif.pipelines.io.avro.MetadataRecord;
-import org.gbif.pipelines.parsers.parsers.SimpleTypeParser;
-import org.gbif.pipelines.parsers.parsers.VocabularyParser;
-import org.gbif.pipelines.parsers.parsers.common.ParsedField;
-import org.gbif.pipelines.parsers.parsers.location.GeocodeKvStore;
-import org.gbif.pipelines.parsers.parsers.location.parser.LocationParser;
-import org.gbif.pipelines.parsers.parsers.location.parser.ParsedLocation;
+import org.gbif.pipelines.core.parsers.parsers.SimpleTypeParser;
+import org.gbif.pipelines.core.parsers.parsers.VocabularyParser;
+import org.gbif.pipelines.core.parsers.parsers.common.ParsedField;
+import org.gbif.pipelines.core.parsers.parsers.location.GeocodeKvStore;
+import org.gbif.pipelines.core.parsers.parsers.location.parser.LocationParser;
+import org.gbif.pipelines.core.parsers.parsers.location.parser.ParsedLocation;
 import org.gbif.rest.client.geocode.GeocodeResponse;
 
 import org.apache.commons.lang3.StringUtils;
@@ -45,8 +45,8 @@ import static org.gbif.api.vocabulary.OccurrenceIssue.COORDINATE_PRECISION_INVAL
 import static org.gbif.api.vocabulary.OccurrenceIssue.COORDINATE_UNCERTAINTY_METERS_INVALID;
 import static org.gbif.api.vocabulary.OccurrenceIssue.COUNTRY_COORDINATE_MISMATCH;
 import static org.gbif.api.vocabulary.OccurrenceIssue.ZERO_COORDINATE;
-import static org.gbif.pipelines.parsers.utils.ModelUtils.addIssue;
-import static org.gbif.pipelines.parsers.utils.ModelUtils.extractNullAwareValue;
+import static org.gbif.pipelines.core.parsers.utils.ModelUtils.addIssue;
+import static org.gbif.pipelines.core.parsers.utils.ModelUtils.extractNullAwareValue;
 
 /** Interprets the location terms of a {@link ExtendedRecord}. */
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
