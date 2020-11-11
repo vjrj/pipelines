@@ -94,10 +94,13 @@ import org.slf4j.MDC;
 public class ALAVerbatimToInterpretedPipeline {
 
   public static void main(String[] args) throws FileNotFoundException {
-    VersionInfo.print();
     String[] combinedArgs = new CombinedYamlConfiguration(args).toArgs("general", "interpret");
     InterpretationPipelineOptions options =
         PipelinesOptionsFactory.createInterpretation(combinedArgs);
+    MDC.put("datasetId", options.getDatasetId());
+    MDC.put("attempt", options.getAttempt().toString());
+    MDC.put("step", StepType.VERBATIM_TO_INTERPRETED.name());
+    VersionInfo.print();
     options.setMetaFileName(ValidationUtils.INTERPRETATION_METRICS);
     run(options);
     // FIXME: Issue logged here: https://github.com/AtlasOfLivingAustralia/la-pipelines/issues/105
@@ -108,11 +111,6 @@ public class ALAVerbatimToInterpretedPipeline {
 
     String datasetId = options.getDatasetId();
     Integer attempt = options.getAttempt();
-
-    MDC.put("datasetId", datasetId);
-    MDC.put("attempt", attempt.toString());
-    MDC.put("step", StepType.VERBATIM_TO_INTERPRETED.name());
-
     boolean tripletValid = options.isTripletValid();
     boolean occurrenceIdValid = options.isOccurrenceIdValid();
     boolean useExtendedRecordId = options.isUseExtendedRecordId();

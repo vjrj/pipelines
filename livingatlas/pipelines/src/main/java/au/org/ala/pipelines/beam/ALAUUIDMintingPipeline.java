@@ -74,14 +74,14 @@ public class ALAUUIDMintingPipeline {
   public static final String UNIQUE_COMPOSITE_KEY_JOIN_CHAR = "|";
 
   public static void main(String[] args) throws Exception {
-    VersionInfo.print();
     String[] combinedArgs = new CombinedYamlConfiguration(args).toArgs("general", "uuid");
     UUIDPipelineOptions options =
         PipelinesOptionsFactory.create(UUIDPipelineOptions.class, combinedArgs);
-    options.setMetaFileName(ValidationUtils.UUID_METRICS);
     MDC.put("datasetId", options.getDatasetId());
     MDC.put("attempt", options.getAttempt().toString());
     MDC.put("step", "UUID");
+    VersionInfo.print();
+    options.setMetaFileName(ValidationUtils.UUID_METRICS);
     PipelinesOptionsFactory.registerHdfs(options);
     run(options);
     // FIXME: Issue logged here: https://github.com/AtlasOfLivingAustralia/la-pipelines/issues/105

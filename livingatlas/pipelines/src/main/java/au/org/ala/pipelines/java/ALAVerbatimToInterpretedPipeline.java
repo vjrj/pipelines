@@ -105,7 +105,7 @@ import org.slf4j.MDC;
 public class ALAVerbatimToInterpretedPipeline {
 
   public static void main(String[] args) throws FileNotFoundException {
-    VersionInfo.print();
+
     String[] combinedArgs = new CombinedYamlConfiguration(args).toArgs("general", "interpret");
     run(combinedArgs);
     // FIXME: Issue logged here: https://github.com/AtlasOfLivingAustralia/la-pipelines/issues/105
@@ -115,6 +115,10 @@ public class ALAVerbatimToInterpretedPipeline {
   public static void run(String[] args) {
     InterpretationPipelineOptions options =
         PipelinesOptionsFactory.create(InterpretationPipelineOptions.class, args);
+    MDC.put("datasetId", options.getDatasetId());
+    MDC.put("attempt", options.getAttempt().toString());
+    MDC.put("step", StepType.VERBATIM_TO_INTERPRETED.name());
+    VersionInfo.print();
     options.setMetaFileName(ValidationUtils.INTERPRETATION_METRICS);
     run(options);
   }
@@ -146,7 +150,6 @@ public class ALAVerbatimToInterpretedPipeline {
     String targetPath = options.getTargetPath();
     String endPointType = options.getEndPointType();
 
-    VersionInfo.print();
     ALAPipelinesConfig config =
         ALAPipelinesConfigFactory.getInstance(
                 options.getHdfsSiteConfig(), options.getCoreSiteConfig(), options.getProperties())
@@ -164,10 +167,6 @@ public class ALAVerbatimToInterpretedPipeline {
         datasetId,
         attempt,
         types);
-
-    MDC.put("datasetId", datasetId);
-    MDC.put("attempt", attempt.toString());
-    MDC.put("step", StepType.VERBATIM_TO_INTERPRETED.name());
 
     String id = Long.toString(LocalDateTime.now().toEpochSecond(ZoneOffset.UTC));
 

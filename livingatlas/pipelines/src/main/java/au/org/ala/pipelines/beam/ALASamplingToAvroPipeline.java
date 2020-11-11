@@ -44,15 +44,14 @@ import org.slf4j.MDC;
 public class ALASamplingToAvroPipeline {
 
   public static void main(String[] args) throws FileNotFoundException {
-    VersionInfo.print();
     String[] combinedArgs = new CombinedYamlConfiguration(args).toArgs("general", "sample-avro");
     InterpretationPipelineOptions options =
         PipelinesOptionsFactory.createInterpretation(combinedArgs);
-    options.setMetaFileName(ValidationUtils.SAMPLING_METRICS);
     MDC.put("datasetId", options.getDatasetId());
     MDC.put("attempt", options.getAttempt().toString());
     MDC.put("step", "SAMPLING_AVRO");
-
+    VersionInfo.print();
+    options.setMetaFileName(ValidationUtils.SAMPLING_METRICS);
     PipelinesOptionsFactory.registerHdfs(options);
     run(options);
   }

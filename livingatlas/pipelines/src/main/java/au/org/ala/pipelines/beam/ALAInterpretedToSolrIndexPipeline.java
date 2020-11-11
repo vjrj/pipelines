@@ -51,21 +51,19 @@ import org.slf4j.MDC;
 public class ALAInterpretedToSolrIndexPipeline {
 
   public static void main(String[] args) throws Exception {
-    VersionInfo.print();
     String[] combinedArgs = new CombinedYamlConfiguration(args).toArgs("general", "index");
     ALASolrPipelineOptions options =
         PipelinesOptionsFactory.create(ALASolrPipelineOptions.class, combinedArgs);
+    MDC.put("datasetId", options.getDatasetId());
+    MDC.put("attempt", options.getAttempt().toString());
+    MDC.put("step", StepType.INTERPRETED_TO_INDEX.name());
+    VersionInfo.print();
     options.setMetaFileName(ValidationUtils.INDEXING_METRICS);
     PipelinesOptionsFactory.registerHdfs(options);
     run(options);
   }
 
   public static void run(ALASolrPipelineOptions options) throws Exception {
-
-    MDC.put("datasetId", options.getDatasetId());
-    MDC.put("attempt", options.getAttempt().toString());
-    MDC.put("step", StepType.INTERPRETED_TO_INDEX.name());
-
     ValidationResult valid = ValidationUtils.checkReadyForIndexing(options);
     if (!valid.getValid()) {
       log.error(

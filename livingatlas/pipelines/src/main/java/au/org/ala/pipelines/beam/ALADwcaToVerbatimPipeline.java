@@ -29,10 +29,13 @@ import org.slf4j.MDC;
 public class ALADwcaToVerbatimPipeline {
 
   public static void main(String[] args) throws IOException {
-    VersionInfo.print();
     String[] combinedArgs = new CombinedYamlConfiguration(args).toArgs("general", "dwca-avro");
     DwcaToVerbatimPipelineOptions options =
         PipelinesOptionsFactory.create(DwcaToVerbatimPipelineOptions.class, combinedArgs);
+    MDC.put("datasetId", options.getDatasetId());
+    MDC.put("attempt", options.getAttempt().toString());
+    MDC.put("step", StepType.DWCA_TO_VERBATIM.name());
+    VersionInfo.print();
     options.setMetaFileName(ValidationUtils.VERBATIM_METRICS);
     PipelinesOptionsFactory.registerHdfs(options);
     runWithLocking(options);
@@ -47,9 +50,6 @@ public class ALADwcaToVerbatimPipeline {
     boolean okToProceed = ALAFsUtils.checkAndCreateLockFile(options);
 
     if (okToProceed) {
-      MDC.put("datasetId", options.getDatasetId());
-      MDC.put("attempt", options.getAttempt().toString());
-      MDC.put("step", StepType.DWCA_TO_VERBATIM.name());
       run(options);
 
       if (options.isDeleteLockFileOnExit()) {

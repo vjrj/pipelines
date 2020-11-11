@@ -88,7 +88,6 @@ import org.slf4j.MDC;
 public class ALAInterpretedToSolrIndexPipeline {
 
   public static void main(String[] args) throws FileNotFoundException {
-    VersionInfo.print();
     String[] combinedArgs = new CombinedYamlConfiguration(args).toArgs("general", "index");
     run(combinedArgs);
   }
@@ -96,6 +95,10 @@ public class ALAInterpretedToSolrIndexPipeline {
   public static void run(String[] args) {
     ALASolrPipelineOptions options =
         PipelinesOptionsFactory.create(ALASolrPipelineOptions.class, args);
+    MDC.put("datasetId", options.getDatasetId());
+    MDC.put("attempt", options.getAttempt().toString());
+    MDC.put("step", StepType.INTERPRETED_TO_INDEX.name());
+    VersionInfo.print();
     PipelinesOptionsFactory.registerHdfs(options);
     run(options);
   }
@@ -111,10 +114,6 @@ public class ALAInterpretedToSolrIndexPipeline {
 
   @SneakyThrows
   public static void run(ALASolrPipelineOptions options, ExecutorService executor) {
-
-    MDC.put("datasetId", options.getDatasetId());
-    MDC.put("attempt", options.getAttempt().toString());
-    MDC.put("step", StepType.INTERPRETED_TO_INDEX.name());
 
     options.setMetaFileName(ValidationUtils.INDEXING_METRICS);
 

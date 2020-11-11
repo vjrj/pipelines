@@ -50,10 +50,13 @@ public class ALAInterpretedToSensitivePipeline {
   public static final boolean USE_GBIF_TAXONOMY = false;
 
   public static void main(String[] args) throws IOException {
-    VersionInfo.print();
     String[] combinedArgs = new CombinedYamlConfiguration(args).toArgs("general", "sensitive");
     InterpretationPipelineOptions options =
         PipelinesOptionsFactory.createInterpretation(combinedArgs);
+    MDC.put("datasetId", options.getDatasetId());
+    MDC.put("attempt", options.getAttempt().toString());
+    MDC.put("step", "INTERPRETED_TO_GENERALISED");
+    VersionInfo.print();
     run(options);
   }
 
@@ -64,10 +67,6 @@ public class ALAInterpretedToSensitivePipeline {
             .get();
 
     String id = Long.toString(LocalDateTime.now().toEpochSecond(ZoneOffset.UTC));
-
-    MDC.put("datasetId", options.getDatasetId());
-    MDC.put("attempt", options.getAttempt().toString());
-    MDC.put("step", "INTERPRETED_TO_GENERALISED");
 
     log.info("Adding step 1: Options");
     UnaryOperator<String> inputPathFn =

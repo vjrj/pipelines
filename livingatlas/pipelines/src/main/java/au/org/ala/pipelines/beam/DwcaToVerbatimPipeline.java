@@ -1,5 +1,6 @@
 package au.org.ala.pipelines.beam;
 
+import au.org.ala.pipelines.util.VersionInfo;
 import java.nio.file.Paths;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
@@ -55,6 +56,7 @@ public class DwcaToVerbatimPipeline {
     MDC.put("datasetKey", options.getDatasetId());
     MDC.put("attempt", options.getAttempt().toString());
     MDC.put("step", StepType.DWCA_TO_VERBATIM.name());
+    VersionInfo.print();
 
     log.info("Adding step 1: Options");
     String inputPath = options.getInputPath();
