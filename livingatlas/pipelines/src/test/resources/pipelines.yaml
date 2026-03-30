@@ -92,7 +92,7 @@ gbifConfig:
       http://rs.tdwg.org/dwc/terms/establishmentMeans: EstablishmentMeans
       http://rs.tdwg.org/dwc/terms/pathway: Pathway
       http://rs.tdwg.org/dwc/terms/eventType: EventType
-      http://rs.tdwg.org/dwc/terms/occuurrenceStatus: OccurrenceStatus
+      http://rs.tdwg.org/dwc/terms/occurrenceStatus: OccurrenceStatus
 
 pipelineExcludeArgs: fsPath
 

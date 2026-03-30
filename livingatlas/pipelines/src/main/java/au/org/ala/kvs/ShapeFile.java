@@ -1,12 +1,12 @@
 package au.org.ala.kvs;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
 import java.util.Map;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
 /** DTO for a shape file. This is mapped to configuration in pipelines.yaml. */
-@AllArgsConstructor
 @Data
 public class ShapeFile implements Serializable {
   /** Path to the shape file */
@@ -23,4 +23,18 @@ public class ShapeFile implements Serializable {
 
   /** Intersect mapping to allow intersected values to mapped to different values e.g. CX -> AU * */
   Map<String, String> intersectMapping;
+
+  @JsonCreator
+  public ShapeFile(
+      @JsonProperty("path") String path,
+      @JsonProperty("field") String field,
+      @JsonProperty("source") String source,
+      @JsonProperty("intersectBuffer") Double intersectBuffer,
+      @JsonProperty("intersectMapping") Map<String, String> intersectMapping) {
+    this.path = path;
+    this.field = field;
+    this.source = source;
+    this.intersectBuffer = intersectBuffer != null ? intersectBuffer : 0.18;
+    this.intersectMapping = intersectMapping;
+  }
 }
