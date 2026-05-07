@@ -14,10 +14,9 @@
   <packaging>pom</packaging>
 
   <modules>
-    <module>gbif</module>
+<!--    <module>gbif</module>-->
     <module>sdks</module>
-    <!-- Please comment livingatlas module if gives problems with the build and ask for help -->
-<!--    <module>livingatlas</module>-->
+    <module>livingatlas</module>
   </modules>
 
   <name>Pipelines :: Parent</name>
