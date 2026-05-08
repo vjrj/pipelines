@@ -10,11 +10,12 @@
 
   <groupId>org.gbif.pipelines</groupId>
   <artifactId>pipelines-parent</artifactId>
-  <version>3.2.24</version>
+  <version>${revision}</version>
   <packaging>pom</packaging>
 
   <modules>
 <!--    <module>gbif</module>-->
+    <module>gbif/identifiers/keygen</module>
     <module>sdks</module>
     <module>livingatlas</module>
   </modules>
@@ -84,6 +85,9 @@
   </pluginRepositories>
 
   <properties>
+    <!-- project version - change this single value to version the entire project -->
+    <revision>3.2.24-ala1-SNAPSHOT</revision>
+
     <!-- Common variables -->
     <jdkLevel>17</jdkLevel>
     <maven.compiler.source>${jdkLevel}</maven.compiler.source>
@@ -264,9 +268,34 @@
           <artifactId>maven-plugin-plugin</artifactId>
           <version>${maven-plugin-plugin.version}</version>
         </plugin>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>flatten-maven-plugin</artifactId>
+          <version>1.7.3</version>
+          <configuration>
+            <updatePomFile>true</updatePomFile>
+            <flattenMode>resolveCiFriendliesOnly</flattenMode>
+          </configuration>
+          <executions>
+            <execution>
+              <id>flatten</id>
+              <phase>process-resources</phase>
+              <goals><goal>flatten</goal></goals>
+            </execution>
+            <execution>
+              <id>flatten.clean</id>
+              <phase>clean</phase>
+              <goals><goal>clean</goal></goals>
+            </execution>
+          </executions>
+        </plugin>
       </plugins>
     </pluginManagement>
     <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>flatten-maven-plugin</artifactId>
+      </plugin>
       <plugin>
         <groupId>com.diffplug.spotless</groupId>
         <artifactId>spotless-maven-plugin</artifactId>
