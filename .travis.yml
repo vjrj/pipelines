@@ -1,12 +1,18 @@
-sudo: true
 language: java
-services:
-  - docker
+sudo: false
 jdk:
-  - openjdk8
+  - openjdk17
 branches:
   only:
-  - master
-  - ala-dev
-  - gbif-dev
-script: "mvn verify  -U"
+    - main
+    - develop
+    - feature/ala-upgrade
+cache:
+  directories:
+    - $HOME/.m2
+jobs:
+  include:
+    - stage: Build and Run All Tests
+      name: "Build and Tests"
+      script:
+        - mvn verify
