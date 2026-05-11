@@ -2,11 +2,13 @@ package au.org.ala.kvs;
 
 import java.io.Serializable;
 import java.util.Map;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /** DTO for a shape file. This is mapped to configuration in pipelines.yaml. */
 @NoArgsConstructor
+@AllArgsConstructor
 @Data
 public class ShapeFile implements Serializable {
   /** Path to the shape file */
