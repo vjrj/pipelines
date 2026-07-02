@@ -15,4 +15,4 @@ jobs:
     - stage: Build and Run All Tests
       name: "Build and Tests"
       script:
-        - mvn verify
+        - travis_wait 45 mvn verify
