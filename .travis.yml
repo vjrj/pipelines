@@ -6,7 +6,6 @@ branches:
   only:
     - main
     - develop
-    - feature/ala-upgrade
 cache:
   directories:
     - $HOME/.m2
