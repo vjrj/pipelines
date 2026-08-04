@@ -1,9 +1,9 @@
 package au.org.ala.pipelines.beam;
 
 import static java.util.concurrent.TimeUnit.MINUTES;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertEquals;
 
 import au.org.ala.pipelines.options.IndexingPipelineOptions;
 import au.org.ala.pipelines.options.SamplingPipelineOptions;
