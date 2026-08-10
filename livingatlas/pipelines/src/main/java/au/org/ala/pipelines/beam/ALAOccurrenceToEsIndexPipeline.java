@@ -1,7 +1,9 @@
 package au.org.ala.pipelines.beam;
 
 import static org.gbif.pipelines.common.PipelinesVariables.Pipeline.ALL_AVRO;
+import static org.gbif.pipelines.common.beam.options.PipelinesOptionsFactory.create;
 
+import au.org.ala.pipelines.options.ALAEsIndexingPipelineOptions;
 import au.org.ala.pipelines.transforms.ALAAttributionTransform;
 import au.org.ala.pipelines.transforms.ALAMetadataTransform;
 import au.org.ala.pipelines.transforms.ALAOccurrenceJsonTransform;
@@ -91,17 +93,17 @@ public class ALAOccurrenceToEsIndexPipeline {
 
   public static void main(String[] args) throws Exception {
     String[] combinedArgs = new CombinedYamlConfiguration(args).toArgs("general", "elastic");
-    EsIndexingPipelineOptions options = PipelinesOptionsFactory.createIndexing(combinedArgs);
+    ALAEsIndexingPipelineOptions options = create(ALAEsIndexingPipelineOptions.class, combinedArgs);
     run(options);
   }
 
-  public static void run(EsIndexingPipelineOptions options) {
+  public static void run(ALAEsIndexingPipelineOptions options) {
     run(options, Pipeline::create);
   }
 
   public static void run(
-      EsIndexingPipelineOptions options,
-      Function<EsIndexingPipelineOptions, Pipeline> pipelinesFn) {
+          ALAEsIndexingPipelineOptions options,
+          Function<EsIndexingPipelineOptions, Pipeline> pipelinesFn) {
 
     String datasetId = options.getDatasetId();
     Integer attempt = options.getAttempt();
@@ -141,7 +143,8 @@ public class ALAOccurrenceToEsIndexPipeline {
     ElasticsearchIO.ConnectionConfiguration esConfig =
         ElasticsearchIO.ConnectionConfiguration.create(
                 options.getEsHosts(), options.getEsIndexName(), "_doc")
-            .withConnectTimeout(180000);
+            .withConnectTimeout(options.getConnectionTimeout())
+            .withSocketTimeout(options.getSocketTimeout());
 
     ElasticsearchIO.Write writeIO =
         ElasticsearchIO.write()
