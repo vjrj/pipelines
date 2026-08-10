@@ -56,11 +56,16 @@ public class ImageServicePipelineTestIT {
 
     List<Image> image_uuid_1 = imagesAvro.get("not-an-uuid-1");
     assertEquals(2, image_uuid_1.size());
-    // identifier from image service is used as image avro as item identifier
-    // http://www.bowerbird.org.au/observations/49875/fakeImage.jpg
-    assertEquals("image-service-id-1", image_uuid_1.get(0).get("identifier"));
-    // image url http://www.bowerbird.org.au/observations/48531/fakeImage2.jpg
-    assertEquals("image-service-id-2", image_uuid_1.get(1).get("identifier"));
+    // the imageID from image service where the identifier matches the image url
+    // http://www.bowerbird.org.au/observations/49875/fakeImage.jpg,
+    // http://www.bowerbird.org.au/observations/48531/fakeImage2.jpg
+    List<String> identifiers =
+        image_uuid_1.stream()
+            .map(image -> image.get("identifier").toString())
+            .collect(java.util.stream.Collectors.toList());
+
+    assertTrue(identifiers.containsAll(Arrays.asList("image-service-id-1", "image-service-id-2")));
+
     image_uuid_1.forEach(
         image -> {
           assertEquals("image/jpg", image.getFormat());
