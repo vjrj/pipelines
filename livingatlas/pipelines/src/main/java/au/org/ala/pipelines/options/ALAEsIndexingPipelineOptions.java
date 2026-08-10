@@ -16,11 +16,12 @@ public interface ALAEsIndexingPipelineOptions extends EsIndexingPipelineOptions 
   @Description("ElasticSearch Connection timeout")
   @Default.Integer(180000)
   Integer getConnectionTimeout();
-  void setConnectionTimeout(Integer socketTimeout);
 
+  void setConnectionTimeout(Integer socketTimeout);
 
   @Description("ElasticSearch Socket timeout")
   @Default.Integer(30000)
   Integer getSocketTimeout();
+
   void setSocketTimeout(Integer socketTimeout);
 }

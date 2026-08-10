@@ -36,7 +36,6 @@ import org.gbif.api.model.pipelines.StepType;
 import org.gbif.dwc.terms.DwcTerm;
 import org.gbif.pipelines.common.beam.metrics.MetricsHandler;
 import org.gbif.pipelines.common.beam.options.EsIndexingPipelineOptions;
-import org.gbif.pipelines.common.beam.options.PipelinesOptionsFactory;
 import org.gbif.pipelines.common.beam.utils.PathBuilder;
 import org.gbif.pipelines.core.pojo.HdfsConfigs;
 import org.gbif.pipelines.core.utils.FsUtils;
@@ -102,8 +101,8 @@ public class ALAOccurrenceToEsIndexPipeline {
   }
 
   public static void run(
-          ALAEsIndexingPipelineOptions options,
-          Function<EsIndexingPipelineOptions, Pipeline> pipelinesFn) {
+      ALAEsIndexingPipelineOptions options,
+      Function<EsIndexingPipelineOptions, Pipeline> pipelinesFn) {
 
     String datasetId = options.getDatasetId();
     Integer attempt = options.getAttempt();
